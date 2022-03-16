@@ -1,0 +1,25 @@
+databases = [
+
+            "database_1",
+            "database_2",
+            "database_3"
+            
+            ]
+
+tables = [
+
+  "taulu_1",
+  "taulu_2",
+  "taulu_3",
+  "taulu_4",
+  "taulu_5"
+  
+ ]
+
+for database in databases:
+  
+  for table in tables:
+    
+    newDF = spark.read.parquet("polku" + database + "/" + table)
+    
+    newDF.write.saveAsTable(database.replace("-","_") + "_" + table)
